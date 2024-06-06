@@ -84,58 +84,6 @@ p_values <- c(0.0272, 0.9175, 0.1582, 0.1261, 0.1257, 0.6276,
 
 dp_sleep_p <- data.frame(p_value = p_values)
 
-# Assign stars based on p-values
-dp_sleep_p$stars <- cut(dp_sleep_p$p_value, breaks=c(-Inf, 0.05, Inf), labels=c("*", ""))
-
-level_y_order <- factor(dp_sleep_p$component, level = rev(dp_sleep_p$component))
-color_code<-c("Diet factors"="00AFBB",
-              "Other lifestyle factors"="999999",
-              "Biological factors"="E7B800")
-plot <- ggplot(dp_sleep_p, aes(level_y_order, R2)) +
-  
-  geom_bar(stat="identity",fill="cornflowerblue",color="black")+
-  
-  scale_y_continuous(labels=scales::percent, limits = c(0, 0.02))+
-  
-  geom_text(aes(label=stars), color="black", size=20) +
-  
-  (values = color_code)+
-  
-  coord_flip()+
-  
-  theme(panel.grid.major = element_blank(),
-        
-        panel.grid.minor = element_blank(),
-        
-        panel.background = element_blank(),
-        
-        panel.border = element_rect(colour = "black", fill=NA, size=1),
-        
-        legend.position = "bottom",
-        
-        legend.text = element_text(size = 20),
-        
-        legend.title = element_blank(),
-        
-        axis.ticks =element_blank(),
-        
-        plot.title = element_blank(),
-        
-        axis.title.x=element_blank(),
-        
-        axis.title.y= element_blank(),
-        
-        axis.line.x = element_line(colour = 'black', size=0.75, linetype='solid'),
-        
-        axis.line.y = element_line(colour = 'black', size=0.75, linetype='solid'),
-        
-        axis.text.y=element_text(size=20, face="bold"),
-        
-        axis.text.x = element_text(size=20))
-
-
-
-
 
 ### cumulative #### 
 dp_cumul<- read.xlsx("summary.xlsx", sheet ="cumulative")
