@@ -2,7 +2,7 @@
 /* v0 */
 
 PROC IMPORT OUT= clinical_biomarker_v0_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\tertile_new\v0.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\napping_new\v0_new.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -86,7 +86,7 @@ run;
 
 /* v1 */
 PROC IMPORT OUT= clinical_biomarker_v1_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\tertile_new\V1.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\napping_new\v1_new.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -171,7 +171,7 @@ run;
 /* v2 */
 
 PROC IMPORT OUT= clinical_biomarker_v2_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\tertile_new\V2.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\napping_new\v2_new.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -256,7 +256,7 @@ run;
 /* V4 */
 
 PROC IMPORT OUT= clinical_biomarker_v4_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\tertile_new\V4.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\napping_new\v4_new.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -336,4 +336,3 @@ run;
 proc freq data=clinical_biomarker_v4_imputed;
   tables  PREG_NAP_fm013_v4 * familyhis_dm  /chisq ;
 run;
-
