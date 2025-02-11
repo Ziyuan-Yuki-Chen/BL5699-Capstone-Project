@@ -1,5 +1,4 @@
 /* define reference group as rarely/never */
-
 /* V0 */
 PROC IMPORT OUT= clinical_biomarker_v0_imputed
 DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\napping_new\v0_new.xlsx"
@@ -7,10 +6,6 @@ DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
 RUN;
-
-proc freq data=clinical_biomarker_v0_imputed;
-    tables PREG_NAP_fm011 / nocum nocol norow nopercent missing;
-run;
 
 data v0_transformed;
 set clinical_biomarker_v0_imputed;
@@ -217,7 +212,6 @@ run;
 
 
 /* v4 */
-
 PROC IMPORT OUT= clinical_biomarker_v4_imputed
 DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\napping_new\V4_new.xlsx"
 DBMS=xlsx REPLACE;
