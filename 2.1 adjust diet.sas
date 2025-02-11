@@ -1,6 +1,6 @@
 /* v0 */
 PROC IMPORT OUT=clinical_biomarker_v0_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\v0_terile.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\v0.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -10,7 +10,6 @@ data v0_transformed;
 set clinical_biomarker_v0_imputed;
 log_Glucose=log(Glucose);
 log_Insulin=log(Insulin);
-log_HbA1c_PCT=log(HbA1c_PCT);
 log_C_peptide=log(C_peptide);
 log_HOMA_IR=log(HOMA_IR);
 log_hsCRP=log(hsCRP);
@@ -45,7 +44,7 @@ ods output close;
 proc genmod DATA=v0_transformed;
 ods output GEEEmpPEst=metabolite&obs;
 class &x PairID momrace familyhis_dm prepregbmi education childsex tertile/param=reference ref=first;
-model &y=&x GA_wk PA_Tot_V0 momagegroup momrace familyhis_dm prepregbmi SCORE_Depression SCORE_STRS SCORE_SUPTF tertile FFQ_AHEI_noalc FFQ_DASH FFQ_tMed_noalc FFQ_aMed_noalc/covb INFLUENCE;
+model &y=&x GA_wk PA_Tot_V0 momagegroup momrace familyhis_dm prepregbmi FFQ_aMed_noalc/covb INFLUENCE;
 weight wtPA12;
 repeated subject = PairID/ type = unstr;
 quit;
@@ -67,10 +66,9 @@ data final;
 run;
 
 
-/* v1 tertile */
-
+/* v1 */
 PROC IMPORT OUT= clinical_biomarker_v1_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\v1_tertile.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\v1.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -80,7 +78,6 @@ data v1_transformed;
 set clinical_biomarker_v1_imputed;
 log_Glucose=log(Glucose);
 log_Insulin=log(Insulin);
-log_HbA1c_PCT=log(HbA1c_PCT);
 log_C_peptide=log(C_peptide);
 log_HOMA_IR=log(HOMA_IR);
 log_hsCRP=log(hsCRP);
@@ -115,7 +112,7 @@ ods output close;
 proc genmod DATA=v1_transformed;
 ods output GEEEmpPEst=metabolite&obs;
 class &x PairID momrace familyhis_dm prepregbmi education childsex tertile/param=reference ref=first;
-model &y=&x GA_wk PA_Tot_V1 momagegroup momrace familyhis_dm prepregbmi SCORE_DEPR_fm014_V1 SCORE_STRS SCORE_SUPTF tertile Asa24_AHEI_noalc01 Asa24_DASH01 Asa24_aMed_noalc01 Asa24_tMed_noalc01/covb INFLUENCE;
+model &y=&x GA_wk PA_Tot_V1 momagegroup momrace familyhis_dm prepregbmi Asa24_aMed_noalc01/covb INFLUENCE;
 weight wtPA12;
 repeated subject = PairID/ type = unstr;
 quit;
@@ -139,7 +136,7 @@ run;
 
 /* v2 */
 PROC IMPORT OUT= clinical_biomarker_v2_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\V2_tertile.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\V2.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -149,10 +146,8 @@ data v2_transformed;
 set clinical_biomarker_v2_imputed;
 log_Glucose=log(Glucose);
 log_Insulin=log(Insulin);
-log_HbA1c_PCT=log(HbA1c_PCT);
 log_C_peptide=log(C_peptide);
 log_HOMA_IR=log(HOMA_IR);
-log_HOMA_beta=log(HOMA_beta);
 log_hsCRP=log(hsCRP);
 run;
 
@@ -185,7 +180,7 @@ ods output close;
 proc genmod DATA=v2_transformed;
 ods output GEEEmpPEst=metabolite&obs;
 class &x PairID momrace familyhis_dm prepregbmi education childsex GDM_treatment tertile/param=reference ref=first;
-model &y=&x GA_wk PA_Tot_V2 momagegroup momrace familyhis_dm prepregbmi SCORE_DEPR_fm014_V2 SCORE_STRS SCORE_SUPTF tertile Asa24_AHEI_noalc02 Asa24_DASH02 Asa24_aMed_noalc02 Asa24_tMed_noalc02/covb INFLUENCE;
+model &y=&x GA_wk PA_Tot_V2 momagegroup momrace familyhis_dm prepregbmi Asa24_aMed_noalc02/covb INFLUENCE;
 weight wtPA34;
 repeated subject = PairID/ type = unstr;
 quit;
@@ -207,10 +202,9 @@ data final;
 run;
 
 
-/* v4 tertile */
-
+/* v4 */
 PROC IMPORT OUT= clinical_biomarker_v4_imputed
-DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\V4_tertile.xlsx"
+DATAFILE= "\\Mac\Home\Desktop\Capstone Project\data\clinical biomarkers\diet\V4.xlsx"
 DBMS=xlsx REPLACE;
 GETNAMES=YES;
 options nodate;
@@ -220,7 +214,6 @@ data v4_transformed;
 set clinical_biomarker_v4_imputed;
 log_Glucose=log(Glucose);
 log_Insulin=log(Insulin);
-log_HbA1c_PCT=log(HbA1c_PCT);
 log_C_peptide=log(C_peptide);
 log_HOMA_IR=log(HOMA_IR);
 log_hsCRP=log(hsCRP);
@@ -255,7 +248,7 @@ ods output close;
 proc genmod DATA=v4_transformed;
 ods output GEEEmpPEst=metabolite&obs;
 class &x PairID momrace familyhis_dm prepregbmi education childsex GDM_treatment tertile/param=reference ref=first;
-model &y=&x GA_wk PA_Tot_V4 momagegroup momrace familyhis_dm prepregbmi SCORE_DEPR_fm014_V4 SCORE_STRS SCORE_SUPTF tertile Asa24_AHEI_noalc04 Asa24_DASH04 Asa24_aMed_noalc04 Asa24_tMed_noalc04/covb INFLUENCE;
+model &y=&x GA_wk PA_Tot_V4 momagegroup momrace familyhis_dm prepregbmi Asa24_aMed_noalc04/covb INFLUENCE;
 weight wtPA34;
 repeated subject = PairID/ type = unstr;
 quit;
